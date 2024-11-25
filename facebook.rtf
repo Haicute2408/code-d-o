@@ -79,7 +79,7 @@ def login_and_check_account(driver, email, password, wait_time, proxy, proxies):
         # Kiểm tra xem có phải là thông báo "Mật khẩu bạn nhập không chính xác" không
         try:
             error_message = driver.find_element(By.XPATH, "//div[contains(text(), 'Mật khẩu bạn nhập không chính xác')]")
-            print(f"\033[1;31mKhông đăng nhập được với tài khoản: {email} - Lỗi: Mật khẩu bạn nhập không chính xác.\033[0m")
+            print(f"\033[1;31mKhông đăng nhập được với tài khoản: {email} \033[0m")
             return False
         except:
             pass
